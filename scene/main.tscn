@@ -1,4 +1,21 @@
-[gd_scene format=3 uid="uid://dqja73brdk8kp"]
+[gd_scene load_steps=8 format=3 uid="uid://dqja73brdk8kp"]
+
+[ext_resource type="Script" path="res://scene/personaje.gd" id="1_kjooc"]
+[ext_resource type="Texture2D" uid="uid://bqh312yhlgj1y" path="res://art/player1.png" id="2_q716n"]
+[ext_resource type="Texture2D" uid="uid://ccm36yi5hq8tm" path="res://art/player2.png" id="3_vwm5a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1r42t"]
+size = Vector2(1296.5, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2m7id"]
+size = Vector2(13, 1118.13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncsgw"]
+size = Vector2(14.25, 1117)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_15f2t"]
+radius = 18.0
+height = 84.0
 
 [node name="Main" type="Node2D"]
 
@@ -7,3 +24,50 @@
 [node name="StaticBody2D" type="StaticBody2D" parent="Terreno"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terreno/StaticBody2D"]
+position = Vector2(639.5, 712.5)
+shape = SubResource("RectangleShape2D_1r42t")
+
+[node name="Bordes" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Bordes"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bordes/StaticBody2D"]
+position = Vector2(-2.5, 133.938)
+shape = SubResource("RectangleShape2D_2m7id")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Bordes"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bordes/StaticBody2D2"]
+position = Vector2(1281.13, 135.5)
+shape = SubResource("RectangleShape2D_ncsgw")
+
+[node name="Player1" type="Node2D" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Player1"]
+script = ExtResource("1_kjooc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1/CharacterBody2D"]
+position = Vector2(98, 642)
+shape = SubResource("CapsuleShape2D_15f2t")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player1/CharacterBody2D/CollisionShape2D"]
+position = Vector2(-4.26173e-06, -3.5)
+scale = Vector2(1.6875, 2.84375)
+texture = ExtResource("2_q716n")
+
+[node name="HUD_personaje" type="CanvasLayer" parent="Player1/CharacterBody2D/CollisionShape2D"]
+
+[node name="Player2" type="Node2D" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Player2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2/CharacterBody2D"]
+position = Vector2(1177, 639)
+shape = SubResource("CapsuleShape2D_15f2t")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player2/CharacterBody2D/CollisionShape2D"]
+position = Vector2(-0.499994, -3.00003)
+scale = Vector2(1.59375, 2.8125)
+texture = ExtResource("3_vwm5a")
+
+[node name="Item" type="Node2D" parent="."]
