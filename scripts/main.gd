@@ -5,3 +5,6 @@ func _input(event):
 		if event.keycode == KEY_E and !$Inventario/Window.visible:
 			$Inventario/Window.visible = true
 			print("Se abrio el inventario")
+		elif event.keycode == KEY_E and $Inventario/Window.visible:
+			$Inventario/Window.visible = false
+			print("Se cerró el inventario")
