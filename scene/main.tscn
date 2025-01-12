@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dqja73brdk8kp"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Terreno" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Terreno"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terreno/StaticBody2D"]
