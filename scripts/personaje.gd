@@ -4,6 +4,10 @@ extends CharacterBody2D
 @export var speed := 200
 @export var jump_force := -400
 @export var gravity := 800
+var label_vida
+
+func _ready():
+	label_vida = get_node("CollisionShape2D/Label")
 
 func _physics_process(delta):
 	# Movimiento lateral
@@ -17,7 +21,7 @@ func _physics_process(delta):
 	# Salto
 	if Input.is_action_just_pressed("saltar") and is_on_floor():
 		velocity.y = jump_force
-		tomar_daño(20)
+		tomar_daño(10)
 
 	# Aplicar gravedad
 	if not is_on_floor():
@@ -28,10 +32,11 @@ func _physics_process(delta):
 	# Mover el personaje
 	move_and_slide()
 
-var vida := 100
+var vida := 100 # Vida inicial
 # Función para que el personaje reciba daño
 func tomar_daño(cantidad):
 	vida -= cantidad
 	if vida <= 0:
 		vida = 0
-		print("El personaje ha muerto")  # Esto puede reemplazarse con una lógica de muerte, como reiniciar el nivel.
+		print("El personaje ha muerto")  # Esto puede reemplazarse con una lógica de muerte.
+	label_vida.text = "Vida:" + str(vida)
