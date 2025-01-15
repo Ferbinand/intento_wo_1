@@ -95,3 +95,18 @@ title = "Inventario"
 position = Vector2i(90, 130)
 size = Vector2i(250, 300)
 visible = false
+
+[node name="PartidaTimer" type="Timer" parent="."]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LabelPartidaTimer" type="Label" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="timeout" from="PartidaTimer" to="." method="_on_partida_timer_timeout"]
