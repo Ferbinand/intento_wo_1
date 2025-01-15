@@ -1,6 +1,8 @@
 extends Node2D
 
 var tiempo_partida = 100
+var item_label = Label
+var item_img = Sprite2D
 
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqja73brdk8kp"]
+[gd_scene load_steps=10 format=3 uid="uid://dqja73brdk8kp"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_8buhn"]
 [ext_resource type="Script" path="res://scripts/personaje.gd" id="2_hjrxe"]
@@ -17,6 +17,8 @@ size = Vector2(14.25, 1117)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_15f2t"]
 radius = 18.0
 height = 84.0
+
+[sub_resource type="Theme" id="Theme_pr5kf"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8buhn")
@@ -108,7 +110,6 @@ offset_bottom = 19.52
 text = "100"
 
 [node name="Inventario" type="GridContainer" parent="UI"]
-visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = -1
@@ -121,6 +122,7 @@ offset_top = -115.48
 offset_right = 96.52
 offset_bottom = 115.52
 tooltip_text = "Inventario"
+theme = SubResource("Theme_pr5kf")
 columns = 3
 
 [connection signal="timeout" from="PartidaTimer" to="." method="_on_partida_timer_timeout"]
