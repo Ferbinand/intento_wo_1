@@ -40,3 +40,8 @@ func tomar_daño(cantidad):
 		vida = 0
 		print("El personaje ha muerto")  # Esto puede reemplazarse con una lógica de muerte.
 	label_vida.text = "Vida:" + str(vida)
+
+
+func _on_item_recolectable_body_entered(body: Node2D) -> void:
+	print("Objeto recolectado")
+	pass # Replace with function body.
