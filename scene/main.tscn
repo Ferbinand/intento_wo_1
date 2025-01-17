@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dqja73brdk8kp"]
+[gd_scene load_steps=14 format=3 uid="uid://dqja73brdk8kp"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_8buhn"]
 [ext_resource type="Script" path="res://scripts/personaje.gd" id="2_hjrxe"]
@@ -22,6 +22,12 @@ height = 84.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4yr52"]
 radius = 16.2788
+
+[sub_resource type="Curve2D" id="Curve2D_c76dk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -248, -164, 0, 0, 0, 0, 912, -164, 0, 0, 0, 0, 784, -132, 0, 0, 0, 0, 304, -132, 0, 0, 0, 0, -176, -132, 0, 0, 0, 0, -248, -164)
+}
+point_count = 6
 
 [sub_resource type="Theme" id="Theme_pr5kf"]
 
@@ -92,7 +98,7 @@ offset_bottom = -46.0
 text = "Vida2: 100"
 
 [node name="ItemRecolectable" type="Area2D" parent="."]
-position = Vector2(205, 105)
+position = Vector2(304, 100)
 script = ExtResource("5_roxaf")
 
 [node name="Sprite2D" type="Sprite2D" parent="ItemRecolectable"]
@@ -102,6 +108,12 @@ texture = ExtResource("5_t12nc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemRecolectable"]
 shape = SubResource("CircleShape2D_4yr52")
+
+[node name="ItemFallPath" type="Path2D" parent="ItemRecolectable"]
+curve = SubResource("Curve2D_c76dk")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ItemRecolectable/ItemFallPath"]
+position = Vector2(-248, -164)
 
 [node name="PartidaTimer" type="Timer" parent="."]
 
@@ -145,6 +157,8 @@ layout_mode = 2
 text = "Soy un texto plano : "
 
 [node name="ImgItem" type="Sprite2D" parent="UI/Inventario"]
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="ItemRecolectable" to="Player1/CharacterBody2D" method="_on_item_recolectable_body_entered"]
 [connection signal="timeout" from="PartidaTimer" to="." method="_on_partida_timer_timeout"]

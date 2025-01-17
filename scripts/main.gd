@@ -4,6 +4,10 @@ var tiempo_partida = 100
 var item_label = Label
 var item_img = Sprite2D
 
+var spawn_interval := 20.0  # Tiempo entre la aparición de ítems
+var spawn_height := -50  # Altura desde donde caen los ítems
+var terrain_width := 800  # Ancho del terreno para calcular posiciones aleatorias
+
 
 
 func _ready() -> void:
@@ -19,13 +23,26 @@ func _input(event):
 			$UI/Inventario.visible = false
 			print("Se cerró el inventario")
 
-
-
 func actualizar_txt_timer():
 	$UI/LabelPartidaTimer.text = str(tiempo_partida)
+	spawn_item()
 
 func _iniciar_partida():
 	$PartidaTimer.start()
+	# Llamar la primera vez y repetir cada `spawn_interval` segundos
+	# spawn_item()
+
+func spawn_item() -> void:
+	# Crear un nuevo ítem desde la escena
+	var item_recolectable = $ItemRecolectable.duplicate() # Item duplicado
+	
+	
+	var spawn_location = $ItemRecolectable/ItemFallPath/PathFollow2D
+	spawn_location.progress_ratio = randf()
+	# Posicionar el ítem 
+	item_recolectable.position = spawn_location.position
+	# Añadir el ítem como hijo de `Main`
+	add_child(item_recolectable)
 
 func _on_partida_timer_timeout() -> void:
 	tiempo_partida -= 1

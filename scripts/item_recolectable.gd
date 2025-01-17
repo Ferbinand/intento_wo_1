@@ -1,16 +1,13 @@
 extends Area2D
 
-@export var gravity_force := 800  # Fuerza de la gravedad
-@export var velocity := Vector2.ZERO  # Velocidad inicial del ítem
+@export var fall_speed := 200  # Velocidad de caída
+var ground_y := 650  # Coordenada Y del suelo (ajusta según tu terreno)
 
-func _ready():
-	pass
+func _physics_process(delta: float) -> void:
+	# Mover hacia abajo
+	position.y += fall_speed * delta
 
-func _physics_process(delta):
-	# Aplicar gravedad
-	velocity.y += gravity_force * delta
-	position += velocity * delta  # Mueve el ítem según la velocidad
-	# Detener el movimiento al alcanzar un límite, si es necesario
-	if position.y >= 650:  # Supón que 500 es el suelo  
-		velocity = Vector2.ZERO
-		position.y = 650
+	# Detener el movimiento al alcanzar el suelo
+	if position.y >= ground_y:
+		position.y = ground_y
+		fall_speed = 0  # Detener la caída

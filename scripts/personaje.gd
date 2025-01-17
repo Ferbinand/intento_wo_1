@@ -44,4 +44,4 @@ func tomar_daño(cantidad):
 
 func _on_item_recolectable_body_entered(body: Node2D) -> void:
 	print("Objeto recolectado")
-	pass # Replace with function body.
+	body.queue_free()
