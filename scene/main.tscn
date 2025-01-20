@@ -29,7 +29,7 @@ radius = 16.0
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8buhn")
 
-[node name="Terreno" type="Node2D" parent="." groups=["terreno"]]
+[node name="Terreno" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Terreno"]
 
@@ -51,7 +51,7 @@ shape = SubResource("RectangleShape2D_2m7id")
 position = Vector2(1281.13, 135.5)
 shape = SubResource("RectangleShape2D_ncsgw")
 
-[node name="Player1" type="Node2D" parent="."]
+[node name="Player1" type="Node2D" parent="." groups=["jugadores"]]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Player1"]
 script = ExtResource("2_hjrxe")
@@ -72,7 +72,7 @@ offset_right = 39.0
 offset_bottom = -50.0
 text = "Vida: 100"
 
-[node name="Player2" type="Node2D" parent="."]
+[node name="Player2" type="Node2D" parent="." groups=["jugadores"]]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Player2"]
 
