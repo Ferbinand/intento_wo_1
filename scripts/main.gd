@@ -25,24 +25,12 @@ func _input(event):
 
 func actualizar_txt_timer():
 	$UI/LabelPartidaTimer.text = str(tiempo_partida)
-	spawn_item()
 
 func _iniciar_partida():
 	$PartidaTimer.start()
-	# Llamar la primera vez y repetir cada `spawn_interval` segundos
-	# spawn_item()
 
 func spawn_item() -> void:
-	# Crear un nuevo ítem desde la escena
-	var item_recolectable = $ItemRecolectable.duplicate() # Item duplicado
-	
-	
-	var spawn_location = $ItemRecolectable/ItemFallPath/PathFollow2D
-	spawn_location.progress_ratio = randf()
-	# Posicionar el ítem 
-	item_recolectable.position = spawn_location.position
-	# Añadir el ítem como hijo de `Main`
-	add_child(item_recolectable)
+	print("funcion spwan item")
 
 func _on_partida_timer_timeout() -> void:
 	tiempo_partida -= 1

@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ccm36yi5hq8tm" path="res://art/player2.png" id="3_vwm5a"]
 [ext_resource type="Script" path="res://scripts/item_recolectable.gd" id="5_roxaf"]
 [ext_resource type="Texture2D" uid="uid://dy2g31okmwouk" path="res://art/item2.png" id="5_t12nc"]
+[ext_resource type="Script" path="res://scripts/spawner.gd" id="7_bg62d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1r42t"]
 size = Vector2(1296.5, 39)
@@ -22,12 +23,6 @@ height = 84.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4yr52"]
 radius = 16.0
-
-[sub_resource type="Curve2D" id="Curve2D_c76dk"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -248, -164, 0, 0, 0, 0, 752, -160, 0, 0, 0, 0, 912, -164, 0, 0, 0, 0, 784, -132, 0, 0, 0, 0, 304, -132, 0, 0, 0, 0, -176, -132, 0, 0, 0, 0, -248, -164)
-}
-point_count = 7
 
 [sub_resource type="Theme" id="Theme_pr5kf"]
 
@@ -98,7 +93,7 @@ offset_bottom = -46.0
 text = "Vida2: 100"
 
 [node name="ItemRecolectable" type="Area2D" parent="."]
-position = Vector2(-96, 112)
+position = Vector2(400, 224)
 script = ExtResource("5_roxaf")
 
 [node name="Sprite2D" type="Sprite2D" parent="ItemRecolectable"]
@@ -108,15 +103,6 @@ texture = ExtResource("5_t12nc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemRecolectable"]
 shape = SubResource("CircleShape2D_4yr52")
-
-[node name="ItemFallPath" type="Path2D" parent="ItemRecolectable"]
-position = Vector2(394.262, 0)
-scale = Vector2(1.04138, 1)
-curve = SubResource("Curve2D_c76dk")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="ItemRecolectable/ItemFallPath"]
-position = Vector2(-248, -164)
-rotation = 0.00399998
 
 [node name="PartidaTimer" type="Timer" parent="."]
 
@@ -161,7 +147,12 @@ text = "Soy un texto plano : "
 
 [node name="ImgItem" type="Sprite2D" parent="UI/Inventario"]
 
-[node name="Timer" type="Timer" parent="."]
+[node name="TimerPartida" type="Timer" parent="."]
+
+[node name="Spawner" type="Timer" parent="."]
+autostart = true
+script = ExtResource("7_bg62d")
 
 [connection signal="body_entered" from="ItemRecolectable" to="ItemRecolectable" method="_on_body_entered"]
 [connection signal="timeout" from="PartidaTimer" to="." method="_on_partida_timer_timeout"]
+[connection signal="timeout" from="Spawner" to="Spawner" method="_on_timeout"]
