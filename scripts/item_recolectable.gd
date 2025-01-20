@@ -11,3 +11,12 @@ func _physics_process(delta: float) -> void:
 	if position.y >= ground_y:
 		position.y = ground_y
 		fall_speed = 0  # Detener la caída
+
+func _exit_tree() -> void:
+	queue_free()
+
+
+func _on_body_entered(body: Node2D) -> void:
+	print("item ha sido recolectado")
+	_exit_tree()
+	pass # Replace with function body.

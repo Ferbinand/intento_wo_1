@@ -21,13 +21,13 @@ radius = 18.0
 height = 84.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4yr52"]
-radius = 16.2788
+radius = 16.0
 
 [sub_resource type="Curve2D" id="Curve2D_c76dk"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -248, -164, 0, 0, 0, 0, 912, -164, 0, 0, 0, 0, 784, -132, 0, 0, 0, 0, 304, -132, 0, 0, 0, 0, -176, -132, 0, 0, 0, 0, -248, -164)
+"points": PackedVector2Array(0, 0, 0, 0, -248, -164, 0, 0, 0, 0, 752, -160, 0, 0, 0, 0, 912, -164, 0, 0, 0, 0, 784, -132, 0, 0, 0, 0, 304, -132, 0, 0, 0, 0, -176, -132, 0, 0, 0, 0, -248, -164)
 }
-point_count = 6
+point_count = 7
 
 [sub_resource type="Theme" id="Theme_pr5kf"]
 
@@ -98,22 +98,25 @@ offset_bottom = -46.0
 text = "Vida2: 100"
 
 [node name="ItemRecolectable" type="Area2D" parent="."]
-position = Vector2(304, 100)
+position = Vector2(-96, 112)
 script = ExtResource("5_roxaf")
 
 [node name="Sprite2D" type="Sprite2D" parent="ItemRecolectable"]
-position = Vector2(0.500014, -1.5)
-scale = Vector2(1.15625, 1.46875)
+position = Vector2(0.500014, 9.41753e-06)
+scale = Vector2(1.15625, 1.5)
 texture = ExtResource("5_t12nc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemRecolectable"]
 shape = SubResource("CircleShape2D_4yr52")
 
 [node name="ItemFallPath" type="Path2D" parent="ItemRecolectable"]
+position = Vector2(394.262, 0)
+scale = Vector2(1.04138, 1)
 curve = SubResource("Curve2D_c76dk")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="ItemRecolectable/ItemFallPath"]
 position = Vector2(-248, -164)
+rotation = 0.00399998
 
 [node name="PartidaTimer" type="Timer" parent="."]
 
@@ -160,5 +163,5 @@ text = "Soy un texto plano : "
 
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="body_entered" from="ItemRecolectable" to="Player1/CharacterBody2D" method="_on_item_recolectable_body_entered"]
+[connection signal="body_entered" from="ItemRecolectable" to="ItemRecolectable" method="_on_body_entered"]
 [connection signal="timeout" from="PartidaTimer" to="." method="_on_partida_timer_timeout"]
